@@ -12,7 +12,7 @@ function draw(){
     {
         if(mouseButton === RIGHT)
         {
-            background(0, 0, 255);
+            background(0,0,255);
         }
         fill(random(255),random(255), random(255));
         circle(mouseX, mouseY, 200);
