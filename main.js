@@ -1,5 +1,12 @@
+let gCoinX;
+let gCoinY;
+let gDemiTaille;
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    gDemiTaille = 50;
+    gCoinX = windowWidth/2;
+    gCoinY = windowHeight/2;
 }
 
 function windowResize(){
@@ -18,18 +25,31 @@ function windowResize(){
 //         circle(mouseX, mouseY, 200);
 //     }
 // }
-function draw() {
-    background(0)
-    fill(255, 255, 255);
-    let lButtonW = 200;
-    let lButtonH = 75;
-    let lPosX = 20;
-    let lPosY = 20;
-    rect(lPosX, lPosY, lButtonW, lButtonH);
-    fill(255,0,0);
-    let lTextSize = 32;
-    textSize(lTextSize)
-    let lText = "OK TP";
-    let lTextWidth = textWidth(lText);
-    text(lText,lPosX+lButtonW/2-lTextWidth/2, lPosY+lButtonH/2+lTextSize/2);
+    function draw(){
+        background(0)
+        fill(255, 255, 255);
+        
+        if (dist(mouseX, mouseY, gCoinX+gDemiTaille, gCoinY+gDemiTaille/2) < (gDemiTaille+5)) {
+            background(0);
+            gCoinX = random(windowWidth-gDemiTaille*2);
+            gCoinY = random(windowHeight-gDemiTaille);
+            dessineMoiUnBouton(gCoinX, gCoinY, gDemiTaille*2);
+        } else {
+            dessineMoiUnBouton(gCoinX, gCoinY, gDemiTaille*2);
+        }
+    }
+
+    function dessineMoiUnBouton(pX, pY,pTaille){
+
+        let lButtonW = pTaille;
+        let lButtonH = pTaille/2;
+        let lTextSize = 32;
+        let lText = "OK TP";
+        let lTextWidth = textWidth(lText);
+
+        fill(255,255,255)
+        rect(pX, pY, lButtonW, lButtonH);
+        fill(255,0,0);    
+        textSize(lTextSize)    
+        text(lText,pX+lButtonW/2-lTextWidth/2, pY+lButtonH/2+lTextSize/2);
     }
